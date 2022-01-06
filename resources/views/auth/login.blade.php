@@ -1,4 +1,91 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+
+    {{-- {!! NoCaptcha::renderJs() !!} --}}
+
+@include('auth.includes.header');
+
+<body>
+
+    <div id="login-button">
+        <img src="https://dqcgrsy5v35b9.cloudfront.net/cruiseplanner/assets/img/icons/login-w-icon.png">
+    </div>
+    <div id="container">
+        <h1>Log In</h1>
+        <span class="close-btn">
+            <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png">
+        </span>
+
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+
+            <input type="email" name="email" class="@error('email') is-invalid @enderror" placeholder="E-mail">
+            @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+
+            <input type="password" name="password" class="@error('password') is-invalid @enderror" placeholder="Password">
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+
+            {{-- <div class="{{$errors->has('g-recaptcha-response') ? 'has-error' : ''}}">
+                {!! NoCaptcha::display(['data-theme' => 'dark']) !!}
+                @if ($errors->has('g-recaptcha-response'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                    </span>
+                @endif
+            </div> --}}
+
+            <button id="sub-btn" type="submit">
+                Log in
+            </button>
+
+            <div id="remember-container">
+                <input type="checkbox" id="checkbox-2-1" class="checkbox" checked="checked"/>
+                <span id="remember">Remember me</span>
+                @if (Route::has('password.request'))
+                    <span id='forgotten'>
+                        <a href="{{ route('password.request') }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
+                    </span>
+                @endif
+                {{-- <span id="forgotten">Forgotten password</span> --}}
+            </div>
+        </form>
+    </div>
+
+    <!-- Forgotten Password Container -->
+    <div id="forgotten-container">
+        <h1>Forgotten</h1>
+        <span class="close-btn">
+            <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png">
+        </span>
+
+        <form>
+            <input type="email" name="email" placeholder="E-mail">
+            <a href="#" class="orange-btn">Get new password</a>
+        </form>
+    </div>
+
+    @include('auth.includes.footer');
+</body>
+</html>
+
+
+
+
+
+
+
+
+{{-- @extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -70,4 +157,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection --}}

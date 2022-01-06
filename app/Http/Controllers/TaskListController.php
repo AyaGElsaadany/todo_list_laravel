@@ -17,7 +17,6 @@ class TaskListController extends Controller
     public function index()
     {
         $lists = Task_list::where('user_id', Auth::id())->latest()->with('tasks')->paginate(4);
-        //dd($lists->toArray());
         return view('TaskList.index', compact('lists'));
     }
 
@@ -29,7 +28,6 @@ class TaskListController extends Controller
     public function create()
     {
         $user = auth()->user();
-        // dd($user);
         return view('TaskList.create', compact('user'));
     }
 
@@ -57,7 +55,6 @@ class TaskListController extends Controller
      */
     public function show(Task_list $task_list)
     {
-        //$tasks = Task::where('list_id', $task_list->id)->get();
         $list = $task_list->where('id', $task_list->id)->with('tasks')->first();
         //dd($list->toArray());
         return view('TaskList.show', compact('list'));
