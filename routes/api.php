@@ -21,11 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class,'login']);
 Route::post('/logout', [AuthController::class,'logout']);
 
 Route::middleware('auth:api')->group(function () {
-    Route::resource('tasks', [TaskController::class]);
-    Route::resource('tasks', [TaskListController::class]);
+    Route::resource('tasks', 'API\TaskController');
+    Route::resource('task_list', 'API\TaskListController');
 });

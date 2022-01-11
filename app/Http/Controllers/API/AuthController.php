@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,9 +50,9 @@ class AuthController extends BaseController
 
     public function logout(Request $request){
         // dd('1234');
-        //auth()->user()->token()->delete();
-        $user = $request->user()->token()->delete();
-        $user->revoke();
+        auth()->user()->tokens()->delete();
+        // $user = $request->user()->token()->delete();
+        // $user->revoke();
         return $this->sendResponse('', 'Log out');
 
     }
