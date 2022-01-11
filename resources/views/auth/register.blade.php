@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    {{-- {!! NoCaptcha::renderJs() !!} --}}
+    {!! NoCaptcha::renderJs() !!}
 
 @include('auth.includes.header');
 
@@ -48,14 +48,14 @@
                        placeholder="Confirm password" required autocomplete="new-password">
             </div>
 
-            {{-- <div class="{{$errors->has('g-recaptcha-response') ? 'has-error' : ''}}">
+            <div class="{{$errors->has('g-recaptcha-response') ? 'has-error' : ''}}">
                 {!! NoCaptcha::display(['data-theme' => 'dark']) !!}
                 @if ($errors->has('g-recaptcha-response'))
                     <span class="help-block">
                         <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
                     </span>
                 @endif
-            </div> --}}
+            </div>
 
             <button type="submit" id="reg-btn">
                 {{ __('Register') }}

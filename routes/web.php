@@ -50,5 +50,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Routes for users
 Route::get('/users', 'UserController@index')->name('users');
 Route::get('/user/create', 'UserController@create')->name('user.create');
-Route::get('/user/store', 'UserController@store')->name('user.store');
-Route::get('/user/destroy/{id}', 'UserController@destroy')->name('user.destroy');
+Route::post('/user/store', 'UserController@store')->name('user.store');
+Route::delete('/user/destroy/{id}', 'UserController@destroy')->name('user.destroy');
